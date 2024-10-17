@@ -1,8 +1,9 @@
-const NovoComponente = ( ) => (
+const NovoComponente = () => (
     <div>
-        <h2>Conteúdo do componente</h2>
-        <p>Um paragrafo</p>
+        <h2>
+            Conteúdo do componete
+        </h2>
+        <p>ola</p>
     </div>
-);
-
+)
 export default NovoComponente;

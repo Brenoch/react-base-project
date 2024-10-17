@@ -3,16 +3,21 @@ import Base from "./Base"
 import { getAll, getElenco } from "../services/AtletasBotafogo";
 import AtletaCard from "../components/AtletaCard/AtletaCard";
 import ListContainer from "../components/ListContainer/ListContainer";
+import { useParams } from "react-router-dom";
+
 
 const Atletas = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
-  
+
+  const { elenco } = useParams();
+
+
   useEffect(() => {
     const getDados = async () => {
-      const dados = await getElenco();
-      
+      const dados = await getElenco(elenco);
+
       if (dados.code === 400) {
         setErro(dados);
       } else {
@@ -20,7 +25,7 @@ const Atletas = () => {
       }
 
       setLoading(false);
-    } 
+    }
     getDados();
   },[]);
 
@@ -29,7 +34,7 @@ const Atletas = () => {
     <Base>
       <ListContainer>
       {loading &&  <span>Carregando...</span>}
-      {erro && 
+      {erro &&
         <div style={{textAlign: 'center'}}>
           <span>{`${erro.message}`}</span><br/>
           <span>{`Mensagem Original: ${erro.original}`}</span>
@@ -43,7 +48,7 @@ const Atletas = () => {
                 src={ele.imagem}
               />
           ))
-        
+
       }
       </ListContainer>
     </Base>
