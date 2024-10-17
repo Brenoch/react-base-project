@@ -8,7 +8,7 @@ const Fotos = () => {
   const { id } = useParams();
 
   const dadosFiltrados = dados.filter(
-    (ele) => ele.id === parseInt(id)
+    (ele) => ele.id === parseInt(id) || !id
   )
 
   return (
